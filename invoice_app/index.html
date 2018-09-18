@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Nobile" rel="stylesheet">
+    <title>Invoice App</title>
+    <style>
+        body {
+            margin: 10% 4% 4% 4%;
+        }
+
+        .userContainer {
+            display: flex;
+            height: 25em;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .invoiceContainer {
+            margin-top: 4em;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: auto;
+        }
+
+        .userProfile {
+            border: 1px solid black;
+            display: flex;
+            width: 60%;
+            height: 100%;
+        }
+
+        .user {
+            height: auto;
+        }
+
+        #picContainer {
+            width: 40%;
+            margin: 8% 0% 8% 3%;
+            background-color: #4D6076;
+        }
+
+        #infoContainer {
+            margin: 5% 2% 2% 2%;
+            width: 60%;
+            font-family: Nobile;
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 22px;
+        }
+
+        img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .invoice {
+            border: 1px solid black;
+            margin: 6% 3% 0% 3%;
+            padding: 2%;
+            width: 250px;
+            height: auto;
+
+        }
+
+        .invoice>p {
+            position: relative;
+            margin: 5px;
+            left: 25%;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="userContainer">
+        <div class="userProfile">
+            <div id="picContainer" class="user">
+                <img src="" alt="logo">
+            </div>
+            <div id="infoContainer" class="user">
+                <p>Name:</p>
+                <div class="name"></div>
+                <p>Company Name:</p>
+                <div class="companyName"></div>
+                <p>Address:</p>
+                <div class="address"></div>
+                <p>Email:</p>
+                <div class="email"></div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Invoices</h2>
+    <div class="invoiceContainer"></div>
+    <script>
+        //Fake it til you make it Database
+        function random () {
+            Math.floor(Math.random() * 2384758);
+        }
+        var randomStr = parseInt(random());
+        var user = {
+            name: "Jonathan Sequeira",
+            companyName: "Ryzeagency",
+            address: "11159 NW 39th ST",
+            email: "sequeira.s.jonathan@gmail.com",
+            picture: "techlaunch.png"
+        }
+
+        var invoices = [
+            {
+                inv_id: "0156321",
+                companyName: user.companyName,
+                date: "9/7/2017",
+                order: "Dell Computers",
+                amount: 3,
+                cost: 3457.67,
+                paid: 3457.67
+            },
+            {
+                inv_id: "0145632",
+                companyName: user.companyName,
+                date: "1/5/2017",
+                order: "HP Printers",
+                amount: 2,
+                cost: 248.00,
+                paid: 150.00
+            },
+            {
+                inv_id: "0132110",
+                companyName: user.companyName,
+                date: "6/14/2016",
+                order: "Marketing Coffee Mugs",
+                amount: 160,
+                cost: 414.00,
+                paid: 414.00
+            },
+            {
+                inv_id: "",
+                companyName: user.companyName,
+                date: "1/5/2017",
+                order: "HP Printers",
+                amount: 2,
+                cost: 248.00,
+                paid: 150.00
+            },
+            {
+                inv_id: "0145632",
+                companyName: user.companyName,
+                date: "1/5/2017",
+                order: "HP Printers",
+                amount: 2,
+                cost: 248.00,
+                paid: 150.00
+            },
+
+        ]
+
+
+        //element selectors
+        document.querySelector(".name").textContent = user.name;
+        document.querySelector(".companyName").textContent = user.companyName;
+        document.querySelector(".address").textContent = user.address;
+        document.querySelector(".email").textContent = user.email;
+        document.querySelector("#picContainer img").src = user.picture;
+
+        //adding invoices
+
+        for(var i=0; i<invoices.length; i++){
+            document.querySelector('.invoiceContainer').innerHTML += `
+            <div class="invoice" id=${invoices[i].inv_id}>
+                Invoice #:   <br/>    
+                <p>${invoices[i].inv_id} </p>
+                Company Name:   <br /> 
+                <p>${invoices[i].companyName} </p>
+                Date:  <br />
+                <p> ${invoices[i].date} </p>
+                Order:  <br />   
+                <p>${invoices[i].order} </p>
+                Amount:   <br />     
+                <p>${invoices[i].amount} </p>
+                Cost:       <br />    
+                <p>$${invoices[i].cost} </p>
+                Paid:       <br />   
+                <p> $${invoices[i].paid} </p>
+                Owed:        <br />   
+                <p>$${invoices[i].cost - invoices[i].paid} </p>
+            </div>
+            `
+        }
+
+    </script>
+</body>
+
+</html>
